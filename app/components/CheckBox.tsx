@@ -12,7 +12,7 @@ const toggleIsDone = async (
   isDone: boolean,
   refreshIt: () => void
 ) => {
-  await fetch(`http://localhost:3000/api/todo?id=${id}`, {
+  await fetch(`/api/todo?id=${id}`, {
     method: "PUT",
     body: JSON.stringify({ is_done: isDone }),
   });

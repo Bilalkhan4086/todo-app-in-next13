@@ -13,7 +13,7 @@ const Todo: React.FC = () => {
   };
   const handleAddTodo = async () => {
     try {
-      await fetch(`http://localhost:3000/api/todo`, {
+      await fetch(`/api/todo`, {
         method: "POST",
         body: JSON.stringify({
           title: todoText,
@@ -27,7 +27,7 @@ const Todo: React.FC = () => {
   };
 
   const updateTodo = async (id: string, title: string, is_done: boolean) => {
-    await fetch(`http://localhost:3000/api/todo?id=${id}`, {
+    await fetch(`/api/todo?id=${id}`, {
       method: "PUT",
       body: JSON.stringify({ title, is_done }),
     });

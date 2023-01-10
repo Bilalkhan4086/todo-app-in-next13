@@ -1,6 +1,7 @@
 import Todo from "./components/todo";
 import Button from "./components/Button";
 import CheckBox from "./components/CheckBox";
+import { BASE_URL } from "../lib/constants";
 
 interface TodoTypes {
   _id: string;
@@ -8,22 +9,28 @@ interface TodoTypes {
   is_done: boolean;
 }
 const getTodos = async () => {
-  const res = await fetch("http://localhost:3000/api/todo");
-  return res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/api/todo`);
+    let response = await res.json();
+    return response;
+  } catch (e) {
+    console.log("e", e);
+  }
 };
 
 export default async function Home() {
   const todos: TodoTypes[] = await getTodos();
   return (
-    <>
+    <div>
       <div
         style={{ display: "flex", margin: "auto", justifyContent: "center" }}
       >
         <Todo />
       </div>
       <ul>
-        {todos.map((todo: TodoTypes) => (
+        {todos?.map((todo: TodoTypes, i: number) => (
           <li
+            key={`todo-list-${i}`}
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -50,6 +57,6 @@ export default async function Home() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

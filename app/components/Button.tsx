@@ -9,7 +9,7 @@ type PropsTypes = {
   isDone?: boolean;
 };
 const deleteTodo = async (id: string) => {
-  await fetch(`http://localhost:3000/api/todo?id=${id}`, {
+  await fetch(`/api/todo?id=${id}`, {
     method: "DELETE",
   });
 };
